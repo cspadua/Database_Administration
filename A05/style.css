@@ -1,0 +1,64 @@
+
+    body {
+      background-color: #252525;
+      color: white;
+    }
+    .welcome-section {
+      text-align: center; 
+      font-family: 'DM Serif Text', serif;
+      font-size: 18vw; 
+      color: #383522;
+      line-height: .9;
+    }
+
+    .to-chttr-users-section {
+      text-align: center;
+      color: #383522;
+      font-size: 1.5rem;
+      font-family: 'DM Serif Text', serif;
+      font-style: italic;
+    }
+
+    section {
+      background-color: #FDE374;
+      padding: 40px;
+    }
+
+    .users-list {
+      text-align: center; 
+      font-family: 'DM Serif Text', serif;
+      font-size: 8vw; 
+      color: #E0DAC1;
+    }
+
+    .user-card .card-details {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    }
+
+    .user-card:hover .card-details {
+    opacity: 1;
+    max-height: 500px;
+    }
+
+    .user-card {
+    background-color: #9CD08E;
+    color: black;
+    position: relative;
+    }
+
+    .user-card .card-remember {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    }
+
+    .user-card .card-remember img.remember-icon {
+    width: 40px;
+    height: Auto;
+    }
+
+
+
