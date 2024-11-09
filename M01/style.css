@@ -1,0 +1,44 @@
+body {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  background-color: rgb(255, 255, 255); 
+  border-bottom: 1px solid #878787;
+}
+
+.form-control {
+  width: 90%;
+}
+
+.rounded-custom {
+  border-radius: 100px;
+}
+
+.btn-wide {
+  width: 90%;
+  background-color: #3b3b3a;
+  color: white;
+  border-radius: 90px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Animation for going up */
+@keyframes slideUp {
+  0% {
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animated-section {
+  animation: slideUp 1s ease-out forwards;
+  opacity: 0;
+}

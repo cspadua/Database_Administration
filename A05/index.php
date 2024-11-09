@@ -16,13 +16,13 @@ $query = "SELECT
     `users`.`will_remember` 
 FROM 
     `users` 
-JOIN 
-    `addresses` ON `users`.`user_info_id` = `addresses`.`user_info_id` 
-JOIN 
+LEFT JOIN 
     `user_info` ON `users`.`user_info_id` = `user_info`.`user_info_id` 
-JOIN 
+LEFT JOIN 
+    `addresses` ON `users`.`user_info_id` = `addresses`.`user_info_id` 
+LEFT JOIN 
     `cities` ON `addresses`.`city_id` = `cities`.`city_id` 
-JOIN 
+LEFT JOIN 
     `provinces` ON `addresses`.`province_id` = `provinces`.`province_id`;";
 
 $result = executeQuery($query);
@@ -35,7 +35,8 @@ $result = executeQuery($query);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chttr's</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/icon.png">
@@ -57,47 +58,49 @@ $result = executeQuery($query);
 
     <div>
         <h1 class="users-list">users &lt;li&gt;</h1>
-    </div> 
+    </div>
 
     <div class="container">
         <div class="row">
             <?php
             if (mysqli_num_rows($result)) {
                 while ($user = mysqli_fetch_assoc($result)) {
-            ?>
+                    ?>
                     <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                         <div class="card rounded-4 shadow my-3 mx-2 user-card" style="background-color: #9CD08E; color: black;">
                             <div class="card-img-top text-center mt-3">
-                                <img src="images/user.png" alt="User Logo" style="width: 100px; height: 100px; object-fit: cover;" class="rounded-circle">
+                                <img src="images/user.png" alt="User Logo"
+                                    style="width: 100px; height: 100px; object-fit: cover;" class="rounded-circle">
                             </div>
                             <div class="card-body text-center">
                                 <h5 class="card-title">
-                                    <?php echo "Username: @" . (isset($user["username"]) ? $user["username"] : "Unknown"); ?>
+                                    <?php echo "Username: @" . (!empty($user["username"]) ? $user["username"] : "Unknown"); ?>
                                 </h5>
                                 <h6 class="card-subtitle mb-2">
-                                    <?php echo (isset($user["first_name"]) ? $user["first_name"] : "Unknown") . " " . (isset($user["last_name"]) ? $user["last_name"] : "Unknown"); ?>
+                                    <?php echo (!empty($user["first_name"]) ? $user["first_name"] : "Unknown") . " " . (!empty($user["last_name"]) ? $user["last_name"] : "Unknown"); ?>
                                 </h6>
                                 <div class="card-details">
                                     <p class="card-text">
-                                        <?php echo "Email: " . (isset($user["email"]) ? $user["email"] : "Unknown"); ?>
+                                        <?php echo "Email: " . (!empty($user["email"]) ? $user["email"] : "Unknown"); ?>
                                     </p>
                                     <p class="card-text">
-                                        <?php echo "Phone Number: " . (isset($user["phone_number"]) ? $user["phone_number"] : "Unknown"); ?>
+                                        <?php echo "Phone Number: " . (!empty($user["phone_number"]) ? $user["phone_number"] : "Unknown"); ?>
                                     </p>
                                     <p class="card-text">
-                                        <?php echo "Address: " . (isset($user["city_name"]) ? $user["city_name"] : "Unknown") . " City, " . (isset($user["province_name"]) ? $user["province_name"] : "Unknown"); ?>
+                                        <?php echo "Address: " . (!empty($user["city_name"]) ? $user["city_name"] : "Unknown") . " City, " . (!empty($user["province_name"]) ? $user["province_name"] : "Unknown"); ?>
                                     </p>
                                     <p class="card-text">
-                                        <?php echo "Birthday: " . (isset($user["birthday"]) ? $user["birthday"] : "Unknown"); ?>
+                                        <?php echo "Birthday: " . (!empty($user["birthday"]) ? $user["birthday"] : "Unknown"); ?>
                                     </p>
                                 </div>
                                 <div class="card-remember">
-                                    <img src="images/<?php echo isset($user['will_remember']) && $user['will_remember'] == 'Yes' ? 'check.png' : 'x.png'; ?>" alt="Remember Status" class="remember-icon">
+                                    <img src="images/<?php echo isset($user['will_remember']) && $user['will_remember'] == 'Yes' ? 'check.png' : 'x.png'; ?>"
+                                        alt="Remember Status" class="remember-icon">
                                 </div>
                             </div>
                         </div>
                     </div>
-            <?php
+                    <?php
                 }
             } else {
                 echo "<div class='col-12'><p>No users found.</p></div>";
@@ -106,7 +109,9 @@ $result = executeQuery($query);
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
     <div class="container">
         <footer class="py-3 my-4">
