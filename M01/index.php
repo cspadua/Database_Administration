@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $addressQuery = "INSERT INTO addresses (city_id, province_id) VALUES ('$city_id', '$province_id')";
     if (executeQuery($addressQuery)) {
-        $address_id = mysqli_insert_id($conn); 
+        $address_id = mysqli_insert_id($conn);
 
 
         $userInfoQuery = "INSERT INTO user_info (first_name, last_name, birthday, address_id) 
@@ -135,15 +135,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-check mb-3">
                         <input type="checkbox" class="form-check-input" id="will_remember" name="will_remember">
                         <label for="will_remember" class="form-check-label" style="color: black;">Will remember</label>
-                        <div class="d-flex align-items-center mb-3">
-                            <button type="submit" class="btn shadow btn-wide">
-                                Create an account
-                            </button>
-                            <svg class="bi flex-shrink-0 ms-2" role="img" aria-label="Success:"
-                                style="width: 20px; height: 20px; display: none;" id="success-message">
-                                <use xlink:href="#check-circle-fill"></use>
-                            </svg>
-                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <button type="submit" class="btn shadow btn-wide">
+                            Create an account
+                        </button>
+                        <svg class="bi flex-shrink-0 ms-2" role="img" aria-label="Success:"
+                            style="width: 20px; height: 20px; display: none;" id="success-message">
+                            <use xlink:href="#check-circle-fill"></use>
+                        </svg>
+                    </div>
                 </form>
             </div>
         </div>
